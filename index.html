@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロジェクト名：補足資料・議論アーカイブ（構成テンプレート）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       デジタル庁デザインシステム準拠 デザイントークン・ベーススタイル
+       ========================================================================== */
+    :root {
+      --color-primary: #0017C1;
+      /* デジタル庁ブルー系プライマリ */
+      --color-primary-hover: #00118F;
+      --color-primary-light: #E8F0FE;
+      --color-text-primary: #1A1A1C;
+      /* 高コントラスト本文色 */
+      --color-text-secondary: #4D4D54;
+      --color-text-muted: #6E6E77;
+      --color-bg-body: #F5F6F8;
+      --color-bg-surface: #FFFFFF;
+      --color-border: #D1D5DB;
+      --color-border-strong: #1A1A1C;
+      --color-accent-bg: #F0F4F8;
+      --color-placeholder-bg: #F8FAFC;
+      --color-placeholder-border: #94A3B8;
+
+      --spacing-xs: 0.5rem;
+      /* 8px */
+      --spacing-sm: 1rem;
+      /* 16px */
+      --spacing-md: 1.5rem;
+      /* 24px */
+      --spacing-lg: 2.5rem;
+      /* 40px */
+      --spacing-xl: 4rem;
+      /* 64px */
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-body);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* プレースホルダー（抽象テキスト）用スタイル */
+    .placeholder-box {
+      background-color: var(--color-placeholder-bg);
+      border: 1px dashed var(--color-placeholder-border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      color: var(--color-text-secondary);
+      font-size: 0.9375rem;
+    }
+
+    .placeholder-inline {
+      display: inline-block;
+      background-color: var(--color-placeholder-bg);
+      border: 1px dashed var(--color-placeholder-border);
+      border-radius: 3px;
+      padding: 0.1rem 0.5rem;
+      color: var(--color-text-secondary);
+      font-size: 0.9em;
+    }
+
+    /* ==========================================================================
+       ヘッダー・ナビゲーション
+       ========================================================================== */
+    .site-header {
+      background-color: var(--color-bg-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--spacing-md) var(--spacing-sm);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-sm);
+    }
+
+    .header-meta {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      background-color: var(--color-primary-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .site-title {
+      margin: 0 0 var(--spacing-xs) 0;
+      font-size: clamp(1.375rem, 3vw, 1.875rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--color-text-primary);
+    }
+
+    .site-subtitle {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* ページ内アンカーナビ（スマホ横スクロール対応） */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--color-bg-surface);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem var(--spacing-sm);
+      gap: 0.5rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .nav-list a {
+      display: inline-block;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      transition: background-color 0.15s, color 0.15s;
+    }
+
+    .nav-list a:hover,
+    .nav-list a:focus-visible {
+      background-color: var(--color-primary-light);
+      color: var(--color-primary);
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    /* ==========================================================================
+       メインセクション共通
+       ========================================================================== */
+    main {
+      padding: var(--spacing-md) 0 var(--spacing-xl);
+    }
+
+    .section-block {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+      scroll-margin-top: 3.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .section-block {
+        padding: 2rem;
+      }
+    }
+
+    .section-header {
+      border-bottom: 2px solid var(--color-primary);
+      padding-bottom: var(--spacing-xs);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .section-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: 0.04em;
+    }
+
+    .section-title {
+      margin: 0.25rem 0 0 0;
+      font-size: 1.375rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .section-lead {
+      margin: 0 0 var(--spacing-md) 0;
+      color: var(--color-text-secondary);
+      font-size: 0.9375rem;
+    }
+
+    /* ==========================================================================
+       コールアウト（注釈・要約ボックス）
+       ========================================================================== */
+    .callout {
+      background-color: var(--color-accent-bg);
+      border-left: 4px solid var(--color-primary);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      margin: 0 0 0.25rem 0;
+      color: var(--color-primary);
+    }
+
+    /* ==========================================================================
+       タイムライン・リストカード（議論の経緯用）
+       ========================================================================== */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    @media (min-width: 768px) {
+      .process-grid--2col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .sub-card {
+      scroll-margin-top: 4rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background-color: #FAFAFB;
+    }
+
+    .sub-card-title {
+      margin: 0 0 var(--spacing-xs) 0;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .date-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background-color: var(--color-text-primary);
+      color: #FFFFFF;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .memo-list {
+      margin: 0.5rem 0 0 0;
+      padding-left: 1.25rem;
+    }
+
+    .memo-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* ==========================================================================
+       アコーディオン（デジタル庁デザインシステム風 details/summary）
+       ========================================================================== */
+    .accordion-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    details.dads-accordion {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg-surface);
+      overflow: hidden;
+      scroll-margin-top: 4rem;
+    }
+
+    details.dads-accordion[open] {
+      border-color: var(--color-primary);
+    }
+
+    details.dads-accordion summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      font-size: 1.0625rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background-color: var(--color-bg-surface);
+      transition: background-color 0.15s;
+    }
+
+    details.dads-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.dads-accordion summary:hover {
+      background-color: var(--color-primary-light);
+    }
+
+    details.dads-accordion summary:focus-visible {
+      outline: 3px solid var(--color-primary);
+      outline-offset: -3px;
+    }
+
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .theme-badge {
+      display: inline-block;
+      background-color: var(--color-primary);
+      color: #FFFFFF;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .accordion-icon {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      position: relative;
+    }
+
+    .accordion-icon::before,
+    .accordion-icon::after {
+      content: "";
+      position: absolute;
+      background-color: var(--color-primary);
+      transition: transform 0.2s ease;
+    }
+
+    /* 横棒 */
+    .accordion-icon::before {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: translateY(-50%);
+    }
+
+    /* 縦棒 */
+    .accordion-icon::after {
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      transform: translateX(-50%);
+    }
+
+    details.dads-accordion[open] .accordion-icon::after {
+      transform: translateX(-50%) rotate(90deg);
+      opacity: 0;
+    }
+
+    .accordion-body {
+      padding: 1.25rem;
+      border-top: 1px solid var(--color-border);
+      background-color: #FFFFFF;
+    }
+
+    .detail-block {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .detail-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .detail-heading {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin: 0 0 0.5rem 0;
+      padding-left: 0.6rem;
+      border-left: 3px solid var(--color-primary);
+    }
+
+    /* 図表プレースホルダー */
+    .figure-placeholder {
+      border: 2px dashed var(--color-placeholder-border);
+      background-color: var(--color-placeholder-bg);
+      border-radius: var(--radius-md);
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--color-text-secondary);
+      margin-top: 0.75rem;
+    }
+
+    .figure-placeholder-caption {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ==========================================================================
+       テーブル（最終提案要旨・比較表用）
+       ========================================================================== */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+    }
+
+    table.dads-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+
+    table.dads-table th,
+    table.dads-table td {
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid var(--color-border);
+      vertical-align: top;
+    }
+
+    table.dads-table th {
+      background-color: var(--color-accent-bg);
+      font-weight: 700;
+      width: 28%;
+      min-width: 140px;
+      color: var(--color-text-primary);
+    }
+
+    table.dads-table tr:last-child th,
+    table.dads-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ==========================================================================
+       フッター
+       ========================================================================== */
+    .site-footer {
+      background-color: #1A1A1C;
+      color: #E5E7EB;
+      padding: var(--spacing-md) 0;
+      font-size: 0.8125rem;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ページヘッダー -->
+  <header class="site-header">
+    <div class="container">
+      <span class="header-meta">提案書 補足資料・議論プロセスアーカイブ</span>
+      <h1 class="site-title">
+        <span>若者ミライ会議</span>
+      </h1>
+      <p class="site-subtitle">
+        <span>提案書に掲載しきれなかった議論の過程や補足情報を掲載。</span>
+      </p>
+    </div>
+  </header>
+
+  <!-- スティッキーナビゲーション（スマホ・タブレットでのジャンプ用） -->
+  <nav class="sticky-nav" aria-label="ページ内目次">
+    <ul class="nav-list">
+      <li><a href="#sec-process">1. 議論の経緯・ブレスト</a></li>
+      <li><a href="#sec-feedback">2. 中間報告・フィードバック</a></li>
+      <li><a href="#sec-themes">3. テーマ別解決策（全4案）</a></li>
+      <li><a href="#sec-final">4. 最終提案の要旨</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+
+    <!-- ========================================================================
+         セクション1：プロジェクトの歩みと初期ブレインストーミング
+         ======================================================================== -->
+    <section id="sec-process" class="section-block">
+      <div class="section-header">
+        <span class="section-label">SECTION 01 / BRAINSTORMING &amp; SCOPING</span>
+        <h2 class="section-title">課題発見のブレインストーミングとテーマ設定</h2>
+      </div>
+      <p class="section-lead">
+        <span>厳密な分野の指定は行わずに、日々の生活の中で感じる秩父に関する課題をメンバー全員で出しあった。各課題点を、理想と現状・原因という要素に分解して言語化した。</span>
+      </p>
+
+      <div class="process-grid process-grid--2col">
+        <!-- 初期ブレスト -->
+        <article class="sub-card">
+          <h3 class="sub-card-title">
+            <span class="date-badge">2026-07-28</span>
+            初期ブレインストーミングの記録
+          </h3>
+          <div>
+            <ul class="memo-list">
+              <li>交通: 「秩父鉄道の電車賃高すぎ」「都内まで1時間半、秩父人限定の定期とか」</li>
+              <li>子育て: 「子育てしやすいランキング上位をとる」「商業施設が欲しい」「年中暑い（川の水源利用）」</li>
+              <li>資源・文化: 「音楽で溢れる街に（『旅立ちの日に』も有名だし）」「武甲山が潰れる前に新しい資源を見つける」「伝統文化」「お祭り好きもいる、働き口があれば残るのでは？」</li>
+              <li>その他: 「クマなど野生動物への対処」「廃校が増えている」「知名度が劣っている・担い手不足」</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 方向性の絞り込み -->
+        <article class="sub-card">
+          <h3 class="sub-card-title">
+            <span class="date-badge">2026-08-27, 2026-09-11</span>
+            4つの重点テーマへの絞り込み
+          </h3>
+          <div>
+            今回のグループのテーマ設定である「学び・文化・子育て」に沿ったものに絞り込み、複数人が課題として挙げたものを抽出した。共通している要素を集約して、解決したい課題を４つのテーマに設定した。
+          </div>
+          <ul class="memo-list">
+            <li><strong>テーマ1：</strong><span>今後の祭りの継承/変革</span></li>
+            <li><strong>テーマ2：</strong><span>子育て世代の意見の反映</span></li>
+            <li><strong>テーマ3：</strong><span>子供の集まる場</span></li>
+            <li><strong>テーマ4：</strong><span>秩父を学べるコンテンツの作成</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         セクション2：中間報告とフィードバック・議論の深掘り
+         ======================================================================== -->
+    <section id="sec-feedback" class="section-block">
+      <div class="section-header">
+        <span class="section-label">SECTION 02 / INTERIM REPORT &amp; FEEDBACK</span>
+        <h2 class="section-title">中間報告でのフィードバックと議論の深掘り</h2>
+      </div>
+      <div class="callout">
+        <p class="callout-title">中間報告を経て得られた共通の視点</p>
+        <div>
+          共通して、その課題を解決することで<strong>「誰が嬉しいのか」</strong>を明確にする必要性が指摘された。
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <!-- フィードバック①：他グループからの意見 -->
+        <details class="dads-accordion">
+          <summary>
+            <span class="summary-left">
+              <span class="theme-badge">聴衆意見</span>
+              <span>他グループからのフィードバック（付箋メモ等の整理）</span>
+            </span>
+            <span class="accordion-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="accordion-body">
+            <div>
+              <h3 class="detail-heading">祭りの継承</h3>
+              <ul class="memo-list">
+                <li>祭りの際、浴衣をレンタルできる場所を作っても良い気がする</li>
+                <li>他の市とか県とかからも祭りの担い手を応募したりしても良い気がする</li>
+                <li>実際に毎年祭りに参加している人の意見も知りたい（どう感じているのか）</li>
+                <li>祭りにをしている町会に話を聞いてみるといいと思います</li>
+              </ul>
+
+              <h3 class="detail-heading">子育て世代の意見の反映</h3>
+              <ul class="memo-list">
+                <li>市が発行している「子育てガイドブック」が参考になると思います</li>
+              </ul>
+
+              <h3 class="detail-heading">子供達の集まる場</h3>
+              <ul class="memo-list">
+                <li>子供達が普段何して遊んでいるのか調査するといいと思います</li>
+                <li>せっかくある資料館などを活用できるように頑張って欲しい</li>
+                <li>秩父の歴史を学ぶ仕組みを作るというのかとてもいいと思う</li>
+              </ul>
+
+              <h3 class="detail-heading">秩父を学べるコンテンツ</h3>
+              <ul class="memo-list">
+                <li>自然にふれあいながら、自主学習できる場所があっても良さそう（外で勉強できるところなど）</li>
+                <li>若者にどのような遊び場がほしいかアンケートをとっても良い気がする</li>
+                <li>少子化が進む中で子供の集まる場の本当に必要なことや使い方を考える必要があると思った</li>
+                <li>増やすだけでなく今ある施設の課題・改善点を考えてどう変えるか、活かすか違いをつけるかを考えるのは？</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- フィードバック②：グループワーク・意見交換記録 -->
+        <details class="dads-accordion">
+          <summary>
+            <span class="summary-left">
+              <span class="theme-badge">議論ログ</span>
+              <span>中間発表直後のグループワークの記録</span>
+            </span>
+            <span class="accordion-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="accordion-body">
+            <div>
+              <h3 class="detail-heading">祭りの継承の話</h3>
+              <ul class="memo-list">
+                <li>他の都道府県では他所から人を祭りに呼ぶ仕組みもある</li>
+                <li>当日だけ来ても意味がない</li>
+                <li>引くだけの人は足りてないわけじゃない</li>
+                <li>お祭りの市の支援</li>
+                <li>川瀬祭りでは40万</li>
+                <li>山車の修繕は市と国</li>
+                <li>人がいない問題</li>
+                <li>町会費</li>
+                <li>町会がやると決めればとれる</li>
+                <li>町会を超えて人を集める仕組み・母体が必要かも（市長）</li>
+                <li>若者ミライ会議の名前を借りて調査はOK</li>
+              </ul>
+
+              <h3 class="detail-heading">子育て世代の声を集める話</h3>
+              <ul class="memo-list">
+                <li>意見収集</li>
+                <li>パパママ会議（市長）</li>
+                <li>児童館を拠点に？</li>
+                <li>プッシュ型にするのは難しい</li>
+                <li>口座がわかっていればできる</li>
+                <li>少しずつ移行しているが、本人確認が課題</li>
+                <li>マイナンバーカード</li>
+                <li>窓口での接触機会に意見を収集する</li>
+                <li>意識調査</li>
+                <li>回収率２割くらい</li>
+                <li><a href="https://www.city.chichibu.lg.jp/11132.html" target="_blank"
+                    rel="noopener noreferrer">https://www.city.chichibu.lg.jp/11132.html</a></li>
+              </ul>
+
+              <h3 class="detail-heading">子供の集まる場の話</h3>
+              <ul class="memo-list">
+                <li>子供の遊び場所問題は難しい（市長）</li>
+                <li>場所があれば学びの場所はいいの？</li>
+                <li>距離問題</li>
+                <li>話しながら勉強したい人には向いてない</li>
+                <li>フリースペースみたいな</li>
+                <li>図書館ではないフラットな場所</li>
+                <li>時間帯は学校外（夜）</li>
+                <li>近場かつ安全な場所</li>
+                <li>街中（市役所）</li>
+                <li>固定した場所が欲しい（市役所だと会議とか入るし）</li>
+                <li>場所がわかるツールがあるといいよね</li>
+                <li>LINEで施設の予約も始まった</li>
+                <li>市役所の交流フロアみたいな場所に人が集まれてるようにできるといいね</li>
+                <li>椅子、空調</li>
+                <li>ふらっときてふらっときて</li>
+                <li>バス停とか駅からのアクセスも大事</li>
+                <li>廃校</li>
+                <li>遠いとやっぱり…</li>
+              </ul>
+
+              <h3 class="detail-heading">秩父を学ぶコンテンツの話</h3>
+              <ul class="memo-list">
+                <li>秩父学</li>
+                <li>セミナーくる人は結局おじいちゃんとかだけど…</li>
+                <li>学校教育はみんながやるから価値がある</li>
+                <li>子供版の市報とかどうなの？</li>
+                <li>こどものまちプロジェクト</li>
+                <li>コンテンツはあるので、そこに繋げる仕組みが必要（市長）</li>
+                <li>結局何を導入したらいいのか</li>
+                <li>歴史を学ぶ仕組みがあると誰が嬉しい？（副市長）</li>
+                <li>地元離脱を防止するため</li>
+                <li>歴史を知れば愛着が湧くのでは</li>
+                <li>ゲーム感覚コンテンツ</li>
+                <li>世代間でやりとりするコンテンツ</li>
+                <li>高校生 - 小中学生</li>
+                <li>学生世代 - 親世代</li>
+                <li>文化系資料多すぎ問題</li>
+                <li>おそらく１万点を超えている</li>
+                <li>文化財は邪険に扱えない</li>
+              </ul>
+
+              <h3 class="detail-heading">その他</h3>
+              <ul class="memo-list">
+                <li>プメルちゃん</li>
+                <li>課題間の共通要素をとった解決策を出すのもあり</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- フィードバック③：市長・副市長からの総括 -->
+        <details class="dads-accordion">
+          <summary>
+            <span class="summary-left">
+              <span class="theme-badge">講評</span>
+              <span>市長・副市長からのフィードバック要点</span>
+            </span>
+            <span class="accordion-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="accordion-body">
+            <div class="placeholder-box">
+              <h3 class="detail-heading">【祭】</h3>
+              <ul class="memo-list">
+                <li>祭に参加する人が減ってきている。→社会の変化の現れ</li>
+                <li>人口減少の対策をしないと祭にも影響がでる。→地方の課題</li>
+                <li>夜祭は人が集まる祭だけど、魅せ方を考える必要がある。</li>
+              </ul>
+
+              <h3 class="detail-heading">【子育て】</h3>
+              <ul class="memo-list">
+                <li>何を求めているかわからないは自分も納得。</li>
+                <li>広く意見を把握することが難しい。一部の声の大きい人の意見ばかり目立ってしまう。</li>
+                <li>意見をフラットに広く聞くことが出来る方法がないか。</li>
+              </ul>
+
+              <h3 class="detail-heading">【集まる場所】</h3>
+              <ul class="memo-list">
+                <li>どのような場所があれば使うか、リアルな感覚、視点が知りたい。</li>
+                <li>ツールについては、どのような内容が良いか具体的な提案が欲しい。</li>
+                <li>今の子は何をして遊ぶのか。</li>
+              </ul>
+
+              <h3 class="detail-heading">【学び】</h3>
+              <ul class="memo-list">
+                <li>学びたいと思えるものかどうかが鍵ではないか。</li>
+                <li>何のための学びなのか。</li>
+                <li>どのような人にどのような効果があるのか考えを聞きたい。</li>
+                <li>学びたいことへの入り口のハードルが低ければ入りやすくなるか。</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+     セクション3：テーマ別解決策案と詳細検討（提案書連動パート）
+     ======================================================================== -->
+    <section id="sec-themes" class="section-block">
+      <div class="section-header">
+        <span class="section-label">SECTION 03 / FOUR THEMES &amp; SOLUTIONS</span>
+        <h2 class="section-title">テーマ別の課題分析と解決策の検討プロセス</h2>
+      </div>
+      <p class="section-lead">
+        <span class="date-badge">2026-10-06, 2026-10-20</span><br>
+        提案書に掲載している4つのテーマについて、検討過程のメモと解決策の詳細を掲載しています。各項目をタップすると詳細が開きます。
+      </p>
+
+      <div class="accordion-group">
+
+        <!-- テーマ1 -->
+        <details id="theme1" class="dads-accordion" open>
+          <summary>
+            <span class="summary-left">
+              <span class="theme-badge">テーマ 1</span>
+              <span>今後の祭りの継承/変革</span>
+            </span>
+            <span class="accordion-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="accordion-body">
+            <div class="detail-block">
+              <h3 class="detail-heading">現状の課題と検討メモ</h3>
+              <ul class="memo-list">
+                <li>どこでも継承者不足があり、町会費での運営や閉鎖的な環境から「よそ者が入ってきづらい」「金銭的な問題」を抱えている。</li>
+                <li>市からのお金の支援（川瀬祭りの補助金や山車修繕など）はあるものの、なぜ足りていないのか、市ができるさらなる支援は何かを議論する必要がある。</li>
+                <li>夜祭は人が集まる一方で魅せ方を考える必要があり、軽い気持ちで参加する危険性を減らすためにも、子どもの祭りである「川瀬祭り」から学び、夜祭へ繋げる導線が求められる。</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h3 class="detail-heading">具体的な解決策アイデア</h3>
+              <ul class="memo-list">
+                <li>
+                  <strong>道の駅のリニューアル活用：</strong>各町内や秩父の文化を伝え体験できるエリアを設け、低予算で太鼓などを体験してもらい、一定回数行うと本番の祭りで太鼓を叩ける権利を得られる仕組みにする。
+                </li>
+                <li>
+                  <strong>祭りの裏側を「推し活・クエスト化」する『秩父マツリ・ギルド』：</strong>本番だけでなく「提灯の修繕」「山車の飾り付け」「まかない作り」などの準備過程に若者や市外の人が単発で参加できる仕組み（アプリやLINE）を作る。貢献度に応じてデジタルバッジや本番の限定特典（特等席観覧権など）を付与し、空き時間で関われる「タイパの良さ」で町会の枠を超えた担い手を育成する。
+                </li>
+                <li>
+                  <strong>事務・準備の省人化とマニュアル化：</strong>祭りに至るまでの決まりきった事務手続きを極限まで省人化し、「当日、山車を引いてくれる人さえいればOK」となる仕組みや、引き手以外の部門でも外部の人が協力できるマニュアル・体制を整える。
+                </li>
+                <li>
+                  <strong>外部プラットフォーム・ふるさと納税の活用：</strong>「スマウト」等の人手募集プラットフォーム（川瀬祭り体験イベント等の前例あり）の活用や、ふるさと納税の返礼品として祭りへの参加権を得られる仕組みを検討する。
+                </li>
+                <li>
+                  <strong>学生連携・学校教育との接続：</strong>学生と連携したPR活動（ガクチカとの結びつけ）や、総合・総探の時間、学校へのチラシ配布、テーマ4（秩父を学べるコンテンツ）との融合を通じて参加へのハードルを下げる。
+                </li>
+                <li><strong>町会による体験会・子ども向け企画：</strong>各町会で太鼓の体験会・見学会を開きルールや姿勢を学ぶ機会を作るほか、こどもお神輿や各町会ブースでの紙芝居・工芸品アピールを行う。
+                </li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- テーマ2 -->
+        <details id="theme2" class="dads-accordion">
+          <summary>
+            <span class="summary-left">
+              <span class="theme-badge">テーマ 2</span>
+              <span>子育て世代の意見の反映</span>
+            </span>
+            <span class="accordion-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="accordion-body">
+            <div class="detail-block">
+              <h3 class="detail-heading">現状の課題と検討メモ</h3>
+              <ul class="memo-list">
+                <li>相談窓口はあるが十分に活用されておらず、申請しないと支援が受けられない構造になっている。</li>
+                <li>「そもそも子育て『しやすい』とは何かよくわからない」状態であり、現状何が課題なのかを把握する必要がある。</li>
+                <li>従来の調査では一部の「声の大きい人」の意見ばかり目立ってしまい、普段声を上げない層の意見を満遍なくフラットに拾い上げることが難しい。</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h3 class="detail-heading">具体的な解決策アイデア</h3>
+              <ul class="memo-list">
+                <li>
+                  <strong>直感スワイプ型アンケート『チチブ・スワイプ』：</strong>マッチングアプリのようにスマホで「右（賛成）」「左（反対）」「上（保留）」にスワイプするだけで回答できる簡易システムをLINE等で導入する。1日1〜3問の単発質問で入力の手間を省き、回答特典（市内クーポンガチャ等）を設けることでサイレントマジョリティの意見を広く集める。
+                </li>
+                <li>
+                  <strong>乳幼児健診・教育機関を通じた確実な回収：</strong>乳幼児検診時の記入や、幼稚園・保育園・小学校・学童を通じたアンケート用紙（GoogleフォームのQRコード付き）の配布、保護者会での聞き取り調査など、子育て世代が必ず訪れる場で負担なく回答できる仕組みを作る。
+                </li>
+                <li>
+                  <strong>デジタル＆アナログの意見箱設置：</strong>月1回などの投稿制限を設けたデジタル意見箱フォーム（将来的に市長へ直接声を届けられる仕組みへ発展）と、保育所・児童館・市役所等に〇✕等で合間にさっと書ける紙の意見箱を併用する。
+                </li>
+                <li>
+                  <strong>次世代・他世代への共有と連携：</strong>中学校の家庭科（保育学習）での幼児ふれあい体験の場で保護者の意見を集めたり、講演会・ポスター・広報を通じて子育て世代以外の市民にも困りごとや手助けしてほしいことを共有する。
+                </li>
+                <li>
+                  <strong>ウェアラブル端末による見守り（発展案）：</strong>同意を得た上でスマートウォッチ等で日々の運動・身体データを収集し、平常時と異なる状態が見られた際に早期介入して産後うつ等の重い状態を防ぐ。
+                </li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- テーマ3 -->
+        <details id="theme3" class="dads-accordion">
+          <summary>
+            <span class="summary-left">
+              <span class="theme-badge">テーマ 3</span>
+              <span>子供の集まる場</span>
+            </span>
+            <span class="accordion-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="accordion-body">
+            <div class="detail-block">
+              <h3 class="detail-heading">現状の課題と検討メモ</h3>
+              <ul class="memo-list">
+                <li>中高生の勉強場所や子供たちが集まれる場所が少なく、幼い世代と勉強したい世代の共存が難しい。</li>
+                <li>新しい施設を建設するには莫大な費用がかかるため、既存施設（市役所、図書館、文体、キッズパーク、児童館、廃校など）の有効活用が求められる。</li>
+                <li>市役所のスペース開放は会議等との兼ね合いで常時開放が難しく、既存の施設も空き状況を知るハードルが高い。また、距離問題（遠いと行けない）や、本当に利用されるかというリアルなニーズの把握が課題。</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h3 class="detail-heading">具体的な解決策アイデア</h3>
+              <ul class="memo-list">
+                <li>
+                  <strong>廃校の多世代ゾーニング活用とスクールバス運行：</strong>地域ごとに拠点を作るのではなく廃校を活用し、長期休みには曜日・時間を指定してスクールバスを各地域に運行する。廃校内での子ども食堂実施や給食センターの長期休み稼働、教員志望等の学生ボランティア・アルバイトによる運営体制を組み合わせる。
+                </li>
+                <li>
+                  <strong>空きスペースの可視化＆チェックインマップ『どこでも・ユース・プレイス』：</strong>市役所の空きスペース、図書館、廃校、市内飲食店のアイドルタイム（客の少ない時間帯）などを「若者が集まれる場所」としてLINE上のマップに可視化する。「今空いてる」「おしゃべりOK」「もくもく勉強用」等のリアルタイム表示と、GPSチェックインによるポイント・店舗特典を連動させ、街全体の隙間を居場所としてシェアする。
+                </li>
+                <li>
+                  <strong>市役所スペースの期間・時間限定開放：</strong>駅やバス停から近く安全な市役所の空きスペースを、学校の考査期間や図書館自習室の混雑時間帯に合わせて学生向けに開放し、LINEや学校のClassroomで開放スケジュールを周知する。
+                </li>
+                <li>
+                  <strong>既存施設のルール整備・イベント化と商業施設コラボ：</strong>既存施設（文体・児童館等）で未就学児と小学生が安全に過ごせるゾーニング・ルール決めや「サッカーの日」等のイベント開催、子供向けバスの無料化検討に加え、矢尾百貨店等とコラボして中高生・小学生が集まりやすい環境をつくる。
+                </li>
+                <li><strong>中高生への事前ニーズ調査：</strong>Googleフォームによるアンケートを中学校・高校で実施し、どんな設備や時間帯なら利用したいか学生のリアルな声を反映する。</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- テーマ4 -->
+        <details id="theme4" class="dads-accordion">
+          <summary>
+            <span class="summary-left">
+              <span class="theme-badge">テーマ 4</span>
+              <span>秩父を学べるコンテンツの作成</span>
+            </span>
+            <span class="accordion-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="accordion-body">
+            <div class="detail-block">
+              <h3 class="detail-heading">現状の課題と検討メモ</h3>
+              <ul class="memo-list">
+                <li>「秩父学」や祭り会館・伝承館などの素晴らしい資源はあるものの、自発的に足を運ばなければならず、セミナー参加者もお年寄りが中心となっている。</li>
+                <li>学校の社会科や総合学習は先生や環境に依存しやすく、すべての子供たちにあまねく届く入り口が必要。</li>
+                <li>SNSで秩父の情報を発信するアカウントが多すぎて分散しており、情報過多でわかりづらい状態になっている。</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h3 class="detail-heading">具体的な解決策アイデア</h3>
+              <ul class="memo-list">
+                <li>
+                  <strong>SNS情報の網羅・統合アカウントとフラットな発信：</strong>秩父の情報を発信している既存のSNSアカウントを網羅的に巡回し、投稿を統合・再発信するアカウントを作成して情報過多を解消する。あわせて、若者がフラットに秩父を知れるInstagramアカウントを運用する。
+                </li>
+                <li>
+                  <strong>子供版「市報」とライトな「秩父ブック」の作成：</strong>通常の市報に加えて子供版市報を作成し、秩父の歴史・文化や各学校の総合学習の成果、地元高校の部活紹介などを掲載して愛着や地元進学・定住につなげる。また、教科書よりも気軽に読める「秩父ブック」や、学芸員・林業などの専門家が分かりやすく解説するコラムを制作する。
+                </li>
+                <li>
+                  <strong>PR動画制作と学校連携・世代間パンフレット交換：</strong>文字より動画に親しむ世代向けに秩父を学ぶPR動画を制作し、学校の授業で活用する。さらに、市内の小学校〜高校が総合学習等で秩父の魅力をまとめた本やパンフレットを作成して交換・図書室へ寄贈する取り組みや、各校の生徒作品（芸術・調べ学習）を一覧できるシステムを構築する。
+                </li>
+                <li>
+                  <strong>クイズイベント・スタンプラリー・親子ツアー：</strong>秩父に関するクイズイベント（活躍する人の講話付き）や、名所を巡って景品がもらえるスタンプラリー、子供と一緒だとお得になる親子向け秩父巡りツアーを企画し、学びへの入り口のハードルを下げる。
+                </li>
+                <li><strong>テーマ1（祭り）との融合：</strong>祭り運営に関わる学生が祭りの魅力や参加方法を発信することで、文化の学びと実際の担い手育成を直結させる。</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+     セクション4：最終提案の要旨（確定情報まとめ・テーマ別全4案）
+     ======================================================================== -->
+    <section id="sec-final" class="section-block">
+      <div class="section-header">
+        <span class="section-label">SECTION 04 / FINAL PROPOSAL SUMMARY</span>
+        <h2 class="section-title">最終提案の要旨（確定情報まとめ・全4テーマ）</h2>
+      </div>
+      <p class="section-lead">
+        これまでの議論を統合した、4つのテーマごとの最終的な提案内容の要旨（確定情報）です。
+      </p>
+
+      <div class="process-grid">
+
+        <!-- 最終提案 テーマ1 -->
+        <article id="final-theme1" class="sub-card">
+          <h3 class="sub-card-title">
+            <span class="theme-badge">テーマ 1 最終案</span>
+            <span>秩父祭りっ子育成計画</span>
+          </h3>
+          <div class="table-wrapper" style="margin-top: 0.75rem;">
+            <table class="dads-table">
+              <tbody>
+                <tr>
+                  <th scope="row">解決する課題と現状</th>
+                  <td>継承者がいない、祭りを通して地元への愛着形成をしたい</td>
+                </tr>
+                <tr>
+                  <th scope="row">主なターゲット（対象）</th>
+                  <td>秩父市民</td>
+                </tr>
+                <tr>
+                  <th scope="row">具体的な実施方法</th>
+                  <td>子供：小学校に出向いて体験授業、市役所で体験会、説明会<br>大人：祭り興味がある人に対して研修</td>
+                </tr>
+                <tr>
+                  <th scope="row">想定される効果・メリット</th>
+                  <td>小さい頃から祭りを通して地元愛を育て、秩父に住む人、出て行ってもリターンする人を増やす</td>
+                </tr>
+                <tr>
+                  <th scope="row">今後の検討・調整事項</th>
+                  <td>他にもっと良い方法があったかもしれないが、現時点の知識ではここまでしか考えることができなかった</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- 最終提案 テーマ2 -->
+        <article id="final-theme2" class="sub-card">
+          <h3 class="sub-card-title">
+            <span class="theme-badge">テーマ 2 最終案</span>
+            <span>子育てヒントーク</span>
+          </h3>
+          <div class="table-wrapper" style="margin-top: 0.75rem;">
+            <table class="dads-table">
+              <tbody>
+                <tr>
+                  <th scope="row">解決する課題と現状</th>
+                  <td>子育て世代が必要としている支援やモノがわからない。意見箱や相談窓口は存在するが、その利用は限定的で、声の大きい層の意見や考えに偏る可能性がある</td>
+                </tr>
+                <tr>
+                  <th scope="row">主なターゲット（対象）</th>
+                  <td>（特に年少〜年長くらいの）子育て世代</td>
+                </tr>
+                <tr>
+                  <th scope="row">具体的な実施方法</th>
+                  <td>1. 保育園・児童館の利用時に負担のない超簡易投票（〇✕・選択式）を実施し、テーマの関心度（広く）を把握<br>2. 関心度の高かったテーマでイベントを開催<br>3.
+                    イベント内の交流・対話を通じて潜在的な困りごとや需要（深く）を収集<br>4. 明らかになった課題をもとに次の簡易投票を作成し、循環させる（1に戻る）</td>
+                </tr>
+                <tr>
+                  <th scope="row">想定される効果・メリット</th>
+                  <td>
+                    <strong>子育て世代（市民）側：</strong>大きな負担なく声を届け、本当に必要な支援・イベントが還元される<br><strong>行政側：</strong>広く声を集めつつ、潜在的なニーズを持続的に把握し、ミスマッチのない施策を展開できる
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">今後の検討・調整事項</th>
+                  <td>・イベント内での声の収集は現場の職員やスタッフの技量に依存する。<br>・結局「催しに参加する人」というバイアスは除去しきれない<br>・子育て分野に限らず、他の領域でも簡単に声を届けられる仕組みを波及させたい。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- 最終提案 テーマ3 -->
+        <article id="final-theme3" class="sub-card">
+          <h3 class="sub-card-title">
+            <span class="theme-badge">テーマ 3 最終案</span>
+            <span>廃校最高さあ行こう！</span>
+          </h3>
+          <div class="table-wrapper" style="margin-top: 0.75rem;">
+            <table class="dads-table">
+              <tbody>
+                <tr>
+                  <th scope="row">解決する課題と現状</th>
+                  <td>中高生の勉強場所が少ない<br>小さい世代と大きい世代の共存が難しい</td>
+                </tr>
+                <tr>
+                  <th scope="row">主なターゲット（対象）</th>
+                  <td>子供</td>
+                </tr>
+                <tr>
+                  <th scope="row">具体的な実施方法</th>
+                  <td>
+                    【1階】小さい世代が遊ぶ、遊具や本などを設置する(アンケート結果によって何の遊具を置くのか検討中)<br>【2階】フリースペース、飲食可能<br>【3階】静かに勉強したい人、中高生、小学校高学年などの勉強をしたい人が利用
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">想定される効果・メリット</th>
+                  <td>・階ごとに利用方法を分けることで、様々な世代が同時に利用できる<br>・中高生の勉強場所不足、小さい世代の遊び場が少ない現状を少しでも解消できる</td>
+                </tr>
+                <tr>
+                  <th scope="row">今後の検討・調整事項</th>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- 最終提案 テーマ4 -->
+        <article id="final-theme4" class="sub-card">
+          <h3 class="sub-card-title">
+            <span class="theme-badge">テーマ 4 最終案</span>
+            <span>ちちぶワクワク発信局</span>
+          </h3>
+          <div class="table-wrapper" style="margin-top: 0.75rem;">
+            <table class="dads-table">
+              <tbody>
+                <tr>
+                  <th scope="row">解決する課題と現状</th>
+                  <td>進学や就職を機に秩父を離れる若者が多い。幼少期から秩父への愛着を育み、将来的な定住・Uターンにつなげたい。</td>
+                </tr>
+                <tr>
+                  <th scope="row">主なターゲット（対象）</th>
+                  <td>秩父市内の小中学生、市民、特に若者世代（10〜30代）、移住・Uターン検討者。</td>
+                </tr>
+                <tr>
+                  <th scope="[row]">具体的な実施方法</th>
+                  <td>
+                    ①大人向け：秩父市公式SNSを若者目線で改善。TikTokやInstagramのリール、ポテくまくん、クイズ投稿などを活用し、秩父の魅力を発信する。<br><br>②子ども向け：市内の小中学生から編集委員を募集し、年2回の子ども版市報を作成。地域取材や体験イベント、学校での地域学習を記事にする。
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">想定される効果・メリット</th>
+                  <td>秩父の魅力の再発見・認知度向上に加え、子どもたちの地域への愛着や主体性を育む。将来的な定住・Uターン人口の増加につなげる。</td>
+                </tr>
+                <tr>
+                  <th scope="row">今後の検討・調整事項</th>
+                  <td>追加で子ども版市報を実際の紙のかたちにして当日配布予定。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="container">
+      <p style="margin:0;">
+        <span style="background:transparent; color:#D1D5DB; border-color:#6B7280;">『若者ミライ会議』学び・文化・子育てグループ 2026</span>
+      </p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
