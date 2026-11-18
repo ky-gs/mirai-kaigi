@@ -481,6 +481,40 @@
   </style>
 </head>
 
+<script>
+    function openTargetAccordion() {
+      // URLのハッシュ（例: "#theme2"）を取得
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      // ハッシュに対応する要素を取得
+      const target = document.querySelector(hash);
+
+      // 対象がアコーディオン（details.dads-accordion）の場合
+      if (target && target.matches('details.dads-accordion')) {
+        // 他のテーマアコーディオンを一旦閉じる（対象だけを強調したい場合）
+        document.querySelectorAll('#sec-themes details.dads-accordion').forEach(el => {
+          el.removeAttribute('open');
+        });
+
+        // 対象のアコーディオンを開く
+        target.setAttribute('open', '');
+
+        // アコーディオンが開いて高さが変わった後に位置を微調整してスクロール
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    }
+
+    // 1. QRコードや外部リンクから直接ページを開いた時に実行
+    window.addEventListener('DOMContentLoaded', openTargetAccordion);
+
+    // 2. すでにページを開いている状態でURLのハッシュが変わった時にも実行
+    window.addEventListener('hashchange', openTargetAccordion);
+  </script>
+</body>
+
 <body>
 
   <!-- ページヘッダー -->
